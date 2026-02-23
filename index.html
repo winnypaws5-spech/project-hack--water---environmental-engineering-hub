@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Hack - Water Resources & Environmental Engineering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Project Hack</h1>
+          <p class="text-sm text-gray-600 mt-1">Water Resources & Environmental Engineering Project Assistant</p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="showSection('topics')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition">Topics</button>
+          <button onclick="showSection('guidelines')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition">Guidelines</button>
+          <button onclick="showSection('resources')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition">Resources</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Search & Filter -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search project topics..." 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            oninput="filterTopics()"
+          >
+        </div>
+        <select id="categoryFilter" onchange="filterTopics()" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <option value="all">All Categories</option>
+          <option value="water-quality">Water Quality</option>
+          <option value="water-resources">Water Resources Management</option>
+          <option value="wastewater">Wastewater Treatment</option>
+          <option value="hydrology">Hydrology & Hydraulics</option>
+          <option value="climate">Climate & Sustainability</option>
+          <option value="pollution">Environmental Pollution</option>
+        </select>
+        <select id="difficultyFilter" onchange="filterTopics()" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <option value="all">All Levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Topics Section -->
+    <div id="topicsSection">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Project Topics</h2>
+        <span id="topicCount" class="text-sm text-gray-600"></span>
+      </div>
+      <div id="topicsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- Guidelines Section -->
+    <div id="guidelinesSection" class="hidden">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Project Writing Guidelines</h2>
+      
+      <div class="space-y-6">
+        <!-- Introduction -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">📋 Standard Project Structure</h3>
+          <div class="space-y-4 text-gray-700">
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">1. Title Page</h4>
+              <p class="text-sm">Project title, your name, institution, department, supervisor, and submission date</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">2. Abstract (200-300 words)</h4>
+              <p class="text-sm">Brief summary of problem, methodology, key findings, and conclusions</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">3. Table of Contents</h4>
+              <p class="text-sm">List all chapters, sections, figures, and tables with page numbers</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">4. Introduction</h4>
+              <p class="text-sm">Background, problem statement, objectives, scope, and significance of study</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">5. Literature Review</h4>
+              <p class="text-sm">Critical analysis of existing research, theoretical framework, and knowledge gaps</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">6. Methodology</h4>
+              <p class="text-sm">Study area, data collection methods, analytical techniques, equipment, and procedures</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">7. Results and Discussion</h4>
+              <p class="text-sm">Present findings with tables, graphs, and charts; interpret and discuss implications</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">8. Conclusions and Recommendations</h4>
+              <p class="text-sm">Summary of key findings, practical recommendations, and future research directions</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">9. References</h4>
+              <p class="text-sm">All cited sources in standard format (APA, Harvard, or IEEE)</p>
+            </div>
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h4 class="font-semibold text-gray-900 mb-2">10. Appendices</h4>
+              <p class="text-sm">Raw data, calculations, additional figures, questionnaires, or supplementary materials</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Writing Tips -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">✍️ Writing Best Practices</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h4 class="font-semibold text-green-900 mb-2">✓ Do</h4>
+              <ul class="text-sm text-green-800 space-y-2">
+                <li>• Use clear, concise, technical language</li>
+                <li>• Write in third person, passive voice</li>
+                <li>• Include units for all measurements</li>
+                <li>• Cite all sources properly</li>
+                <li>• Use high-quality figures and tables</li>
+                <li>• Proofread and edit thoroughly</li>
+                <li>• Follow your institution's format</li>
+              </ul>
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+              <h4 class="font-semibold text-red-900 mb-2">✗ Don't</h4>
+              <ul class="text-sm text-red-800 space-y-2">
+                <li>• Use first person ("I" or "we")</li>
+                <li>• Include plagiarized content</li>
+                <li>• Present data without discussion</li>
+                <li>• Use low-resolution images</li>
+                <li>• Ignore formatting guidelines</li>
+                <li>• Submit without peer review</li>
+                <li>• Copy-paste from sources</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Collection -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">🔬 Data Collection & Analysis</h3>
+          <div class="space-y-3 text-gray-700 text-sm">
+            <p><strong>Primary Data:</strong> Field measurements, laboratory experiments, surveys, and direct observations</p>
+            <p><strong>Secondary Data:</strong> Government reports, published papers, online databases (WHO, EPA, UN Water)</p>
+            <p><strong>Common Tools:</strong> SPSS, R, Python, Excel, ArcGIS, EPANET, SWMM, HEC-RAS, MODFLOW</p>
+            <p><strong>Statistical Methods:</strong> Descriptive statistics, correlation analysis, regression, ANOVA, time series</p>
+          </div>
+        </div>
+
+        <!-- Common Standards -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">📊 Reference Standards</h3>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Water Quality</h4>
+              <ul class="text-gray-700 space-y-1">
+                <li>• WHO Guidelines for Drinking Water</li>
+                <li>• EPA National Primary Standards</li>
+                <li>• ISO 5667 (Water Sampling)</li>
+                <li>• APHA Standard Methods</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Environmental</h4>
+              <ul class="text-gray-700 space-y-1">
+                <li>• IPCC Climate Guidelines</li>
+                <li>• ISO 14001 (EMS)</li>
+                <li>• EPA Environmental Standards</li>
+                <li>• National Environmental Acts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div id="resourcesSection" class="hidden">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Research Resources</h2>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">📚 Academic Databases</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <span class="text-blue-600 mr-2">•</span>
+              <div>
+                <strong>Google Scholar</strong> - Free academic search engine
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-600 mr-2">•</span>
+              <div>
+                <strong>ScienceDirect</strong> - Engineering and environmental journals
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-600 mr-2">•</span>
+              <div>
+                <strong>Web of Science</strong> - Citation database and research platform
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-600 mr-2">•</span>
+              <div>
+                <strong>ASCE Library</strong> - Civil and environmental engineering
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">🌐 Data Sources</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <span class="text-green-600 mr-2">•</span>
+              <div>
+                <strong>USGS Water Data</strong> - Hydrological data and maps
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-600 mr-2">•</span>
+              <div>
+                <strong>UN Water</strong> - Global water statistics
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-600 mr-2">•</span>
+              <div>
+                <strong>EPA Databases</strong> - Environmental monitoring data
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-600 mr-2">•</span>
+              <div>
+                <strong>World Bank Open Data</strong> - Development indicators
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">🛠️ Software Tools</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <span class="text-purple-600 mr-2">•</span>
+              <div>
+                <strong>EPANET</strong> - Water distribution system modeling
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-600 mr-2">•</span>
+              <div>
+                <strong>HEC-RAS</strong> - River analysis and flood modeling
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-600 mr-2">•</span>
+              <div>
+                <strong>SWMM</strong> - Stormwater management modeling
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-600 mr-2">•</span>
+              <div>
+                <strong>QGIS/ArcGIS</strong> - Geographic information systems
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">📖 Key Journals</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start">
+              <span class="text-orange-600 mr-2">•</span>
+              <div>
+                <strong>Water Research</strong> - Leading water journal
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-600 mr-2">•</span>
+              <div>
+                <strong>Journal of Hydrology</strong> - Hydrological research
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-600 mr-2">•</span>
+              <div>
+                <strong>Environmental Science & Technology</strong> - ES&T
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-600 mr-2">•</span>
+              <div>
+                <strong>Journal of Environmental Engineering</strong> - ASCE
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Topic Detail Modal -->
+  <div id="topicModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onclick="closeModal(event)">
+    <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+      <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <h3 id="modalTitle" class="text-2xl font-bold text-gray-900"></h3>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+      </div>
+      <div class="p-6">
+        <div id="modalContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
